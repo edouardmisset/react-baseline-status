@@ -2,9 +2,9 @@
 
 import { Suspense, use } from "react";
 import { fetchFeature, type Status } from "./data";
-import { availabilityIcons, ChromeIcon, EdgeIcon, FirefoxIcon, SafariIcon } from "./Icons";
-import "./BaselineStatus.css";
+import "./baseline-status.css";
 import type { FeatureId } from "./feature-ids";
+import { availabilityIcons, BrowserStatus } from "./icons";
 
 interface BaselineStatusProps {
   featureId: FeatureId;
@@ -29,19 +29,19 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
     <details className="baseline-status" data-status={status}>
       <summary className="baseline-summary">
         <div className="baseline-header">
-          <span className="baseline-logo">
-            <strong>{name}</strong>
-          </span>
           <span className="baseline-title">
             <Icon />
             {getStatusLabel(status, lowDate)}
           </span>
         </div>
+        <h3 className="baseline-logo">
+          <strong>{name}</strong>
+        </h3>
         <div className="baseline-browsers">
-          <ChromeIcon active={browsers.chrome} />
-          <EdgeIcon active={browsers.edge} />
-          <FirefoxIcon active={browsers.firefox} />
-          <SafariIcon active={browsers.safari} />
+          <BrowserStatus name="Chrome" available={browsers.chrome} />
+          <BrowserStatus name="Edge" available={browsers.edge} />
+          <BrowserStatus name="Firefox" available={browsers.firefox} />
+          <BrowserStatus name="Safari" available={browsers.safari} />
         </div>
       </summary>
 

@@ -3,10 +3,6 @@
   "version": "0.0.1",
   "exports": "./dist/index.js",
   "publish": {
-    "include": [
-      "dist",
-      "README.md",
-      "LICENSE"
-    ]
+    "include": ["dist", "README.md", "LICENSE"]
   }
 }

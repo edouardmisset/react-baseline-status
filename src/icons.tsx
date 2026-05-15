@@ -85,7 +85,7 @@ export const CheckIcon = () => (
     width={browserStatusIconSize}
     height={browserStatusIconSize}
     viewBox="0 0 24 24"
-    fill="currentColor"
+    fill="#1E8E3E"
   >
     <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
   </svg>
@@ -105,41 +105,30 @@ export const CrossIcon = () => (
     width={browserStatusIconSize}
     height={browserStatusIconSize}
     viewBox="0 0 24 24"
-    fill="currentColor"
+    fill="#EA8600"
   >
     <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
   </svg>
 );
 
-export const SafariIcon = ({ active }: { active: boolean }) => (
-  <img
-    src={safariIconAsset}
-    className={`browser-icon ${active ? "active" : ""}`}
-    alt={`Safari ${active ? "Available" : "Unavailable"}`}
-    style={{ width: browserIconSize, height: browserIconSize }}
-  />
-);
-export const EdgeIcon = ({ active }: { active: boolean }) => (
-  <img
-    src={edgeIconAsset}
-    className={`browser-icon ${active ? "active" : ""}`}
-    alt={`Edge ${active ? "Available" : "Unavailable"}`}
-    style={{ width: browserIconSize, height: browserIconSize }}
-  />
-);
-export const FirefoxIcon = ({ active }: { active: boolean }) => (
-  <img
-    src={firefoxIconAsset}
-    className={`browser-icon ${active ? "active" : ""}`}
-    alt={`Firefox ${active ? "Available" : "Unavailable"}`}
-    style={{ width: browserIconSize, height: browserIconSize }}
-  />
-);
-export const ChromeIcon = ({ active }: { active: boolean }) => (
-  <img
-    src={chromeIconAsset}
-    className={`browser-icon ${active ? "active" : ""}`}
-    alt={`Chrome ${active ? "Available" : "Unavailable"}`}
-    style={{ width: browserIconSize, height: browserIconSize }}
-  />
+const BROWSERS = ["Chrome", "Edge", "Firefox", "Safari"] as const;
+type BrowserName = (typeof BROWSERS)[number];
+
+const BROWSER_NAME_TO_IMAGE_SRC = {
+  Chrome: chromeIconAsset,
+  Edge: edgeIconAsset,
+  Firefox: firefoxIconAsset,
+  Safari: safariIconAsset,
+} as const satisfies Record<BrowserName, string>;
+
+export const BrowserStatus = ({ name, available }: { name: BrowserName; available: boolean }) => (
+  <span>
+    <img
+      src={BROWSER_NAME_TO_IMAGE_SRC[name]}
+      className={`browser-icon ${available ? "active" : ""}`}
+      alt={`${name} ${available ? "Available" : "Unavailable"}`}
+      style={{ width: browserIconSize, height: browserIconSize }}
+    />
+    {available ? <CheckIcon /> : <CrossIcon />}
+  </span>
 );

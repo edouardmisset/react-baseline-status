@@ -15,16 +15,13 @@ npm install react-baseline-status
 Import the component and the CSS.
 
 ```jsx
-import { BaselineStatus } from 'react-baseline-status';
-import 'react-baseline-status/dist/react-baseline-status.css';
+import { BaselineStatus } from "react-baseline-status";
+import "react-baseline-status/dist/react-baseline-status.css";
 
 function App() {
   return (
     <div className="App">
-       <BaselineStatus featureId="grid" />
-       
-       {/* With specific ID type safety if using the helper */}
-       <BaselineStatus featureId="anchor-positioning" />
+      <BaselineStatus featureId="anchor-positioning" />
     </div>
   );
 }
@@ -32,7 +29,7 @@ function App() {
 
 ## Features
 
-- **React 19**: Uses `Suspense` and the new `use` hook for data fetching.
+- **React 19**: Uses `Suspense` and the `use` hook for data fetching.
 - **Type Safe**: Includes a generated list of all 1000+ valid feature IDs for autocomplete.
 - **Lightweight**: Zero dependencies (besides React).
 - **Dual Registry**: Published to NPM and JSR.
