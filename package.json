@@ -13,24 +13,23 @@
   "scripts": {
     "dev": "vp dev",
     "build": "vp build",
-    "lint": "vp lint",
-    "lint:fix": "vp lint --fix",
-    "format": "vp fmt",
+    "check": "vp check --fix",
+    "lint": "vp lint --fix",
+    "format": "vp fmt --write",
     "preview": "vp preview",
-    "generate-ids": "tsx scripts/generate-ids.ts",
+    "generate-ids": "node scripts/generate-ids.ts",
     "prebuild": "pnpm run generate-ids",
     "prepare": "vp config"
   },
   "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
-    "tsx": "^4.21.0",
     "typescript": "~5.9.3",
     "vite": "npm:@voidzero-dev/vite-plus-core@latest",
     "vite-plus": "latest"

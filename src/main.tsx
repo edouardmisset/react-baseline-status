@@ -1,17 +1,18 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BaselineStatus } from "./baseline-status";
+import styles from "./baseline-status.module.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <div style={{ padding: "2rem", fontFamily: "system-ui, sans-serif" }}>
+    <main>
       <h1>React Baseline Status</h1>
-      <div style={{ maxWidth: "600px", margin: "0 auto" }}>
+      <section className={styles["baseline-status-list"]}>
         <BaselineStatus featureId="a" />
         <BaselineStatus featureId="state" />
         <BaselineStatus featureId="accent-color" />
         <BaselineStatus featureId="attr" />
-      </div>
-    </div>
+      </section>
+    </main>
   </StrictMode>,
 );

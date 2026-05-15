@@ -20,7 +20,7 @@ import "react-baseline-status/dist/react-baseline-status.css";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <BaselineStatus featureId="anchor-positioning" />
     </div>
   );
