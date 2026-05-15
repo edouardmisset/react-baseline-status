@@ -1,7 +1,6 @@
 body {
   margin: 0;
   padding: 0;
-  /* min-height: 100dvh; */
 }
 
 h1 {
@@ -17,7 +16,6 @@ h1 {
   --surface-2: light-dark(hsl(0deg 0% 90%), hsl(0deg 0% 20%));
   --border-color: light-dark(hsl(0deg 0% 80%), hsl(0deg 0% 30%));
 
-  height: 100dvh;
   min-height: 100dvh;
 
   font-family: system-ui, sans-serif;
@@ -76,6 +74,7 @@ h1 {
   display: grid;
   grid-template-columns: 18rem 1fr auto;
   gap: 2rem;
+  align-items: center;
 
   padding: var(--size-3) var(--size-4);
   cursor: pointer;
@@ -115,13 +114,13 @@ h1 {
 /* Themes */
 .baseline-status[data-status="widely"] .baseline-title {
   --color: var(--bs-color-widely);
-  text-decoration-style: double;
 }
 .baseline-status[data-status="newly"] .baseline-title {
   --color: var(--bs-color-newly);
   --color-secondary: var(--bs-color-newly-secondary);
   --contrast-color: white;
   text-decoration-style: dotted;
+  text-decoration-thickness: 4px;
 }
 .baseline-status[data-status="limited"] .baseline-title {
   --color: var(--bs-color-limited);
