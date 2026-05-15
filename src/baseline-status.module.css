@@ -1,3 +1,37 @@
+body {
+  margin: 0;
+  padding: 0;
+  /* min-height: 100dvh; */
+}
+
+h1 {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+.main {
+  color-scheme: light dark;
+  --text-1: light-dark(hsl(0deg 0% 14%), hsl(0deg 0% 94%));
+  --surface-1: light-dark(hsl(0deg 0% 94%), hsl(0deg 0% 14%));
+  --surface-2: light-dark(hsl(0deg 0% 90%), hsl(0deg 0% 20%));
+  --border-color: light-dark(hsl(0deg 0% 80%), hsl(0deg 0% 30%));
+
+  height: 100dvh;
+  min-height: 100dvh;
+
+  font-family: system-ui, sans-serif;
+
+  background-color: var(--surface-1);
+  color: var(--text-1);
+  font-synthesis: none;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
+  hanging-punctuation: first last;
+}
+
 .baseline-status-list {
   --bs-color-widely: #1e8e3e;
   --bs-color-widely-secondary: #a8dab5;
@@ -33,9 +67,9 @@
 }
 
 .baseline-status {
-  border: 1px solid #dadce0;
+  border: 1px solid var(--border-color);
   border-radius: var(--size-2);
-  color: #202124;
+  color: var(--text-1);
 }
 
 .baseline-summary {
@@ -46,11 +80,11 @@
   padding: var(--size-3) var(--size-4);
   cursor: pointer;
   list-style: none;
-  background-color: #fff;
+  background-color: var(--surface-1);
   border-radius: var(--size-2);
 }
 .baseline-summary:hover {
-  background-color: #f8f9fa;
+  background-color: var(--surface-2);
 }
 .baseline-summary::-webkit-details-marker {
   display: none;
@@ -70,10 +104,12 @@
   align-items: center;
   gap: var(--size-3);
 
-  text-decoration-thickness: 2px;
+  text-decoration-skip-ink: auto;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: max(0.01em, 2px);
   text-decoration-line: underline;
   text-decoration-color: var(--color);
-  color: color-mix(black 50%, var(--color));
+  color: color-mix(var(--text-1) 50%, var(--color));
 }
 
 /* Themes */
@@ -117,8 +153,7 @@
 
 .baseline-content {
   padding: var(--size-3);
-  border-top: 1px solid #dadce0;
-  background-color: #fff;
+  border-top: 1px solid var(--border-color);
   border-radius: 0 0 var(--size-2) var(--size-2);
 }
 
@@ -137,7 +172,7 @@
 
 .baseline-skeleton {
   height: var(--size-5);
-  background: #f0f0f0;
+  background: var(--surface-2);
   border-radius: var(--size-2);
   animation: pulse 1.5s infinite ease-in-out;
 }

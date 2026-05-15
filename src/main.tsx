@@ -5,7 +5,7 @@ import styles from "./baseline-status.module.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <main>
+    <main className={styles["main"]}>
       <h1>React Baseline Status</h1>
       <section className={styles["baseline-status-list"]}>
         <BaselineStatus featureId="a" />
