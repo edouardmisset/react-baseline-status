@@ -158,7 +158,15 @@ h1 {
 
 .baseline-browsers {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--size-2);
+
+  & .browser {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
 }
 
 .browser-icon {
