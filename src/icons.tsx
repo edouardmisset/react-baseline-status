@@ -8,6 +8,26 @@ import styles from "./baseline-status.module.css";
 const baselineIconSize = `var(--size-5)`;
 const statusIconSize = `var(--size-4)`;
 
+const BROWSERS = ["Chrome", "Edge", "Firefox", "Safari"] as const;
+type BrowserName = (typeof BROWSERS)[number];
+const BROWSER_NAME_TO_IMAGE_SRC = {
+  Chrome: chromeIconAsset,
+  Edge: edgeIconAsset,
+  Firefox: firefoxIconAsset,
+  Safari: safariIconAsset,
+} as const satisfies Record<BrowserName, string>;
+
+export const BrowserStatus = ({ name, available }: { name: BrowserName; available: boolean }) => (
+  <span className={styles.browser} data-available={available}>
+    <img
+      src={BROWSER_NAME_TO_IMAGE_SRC[name]}
+      className={styles["browser-icon"]}
+      alt={`${name} ${available ? "Available" : "Unavailable"}`}
+    />
+    {available ? <CheckIcon /> : <CrossIcon />}
+  </span>
+);
+
 export const WidelyIcon = () => (
   <svg width={baselineIconSize} height={baselineIconSize} viewBox="0 0 500 284" fill="none">
     <path fill="var(--bs-color-widely)" d="m0 142 34-34 108 108L358 0l34 34-250 250L0 142Z" />
@@ -72,13 +92,6 @@ export const DiscouragedIcon = () => (
   </svg>
 );
 
-export const availabilityIcons = {
-  limited: LimitedIcon,
-  widely: WidelyIcon,
-  newly: NewlyIcon,
-  unknown: NoDataIcon,
-} as const satisfies Record<BaselineStatus, React.FC>;
-
 export const CheckIcon = () => (
   <svg
     height={statusIconSize}
@@ -114,23 +127,9 @@ export const CrossIcon = () => (
   </svg>
 );
 
-const BROWSERS = ["Chrome", "Edge", "Firefox", "Safari"] as const;
-type BrowserName = (typeof BROWSERS)[number];
-
-const BROWSER_NAME_TO_IMAGE_SRC = {
-  Chrome: chromeIconAsset,
-  Edge: edgeIconAsset,
-  Firefox: firefoxIconAsset,
-  Safari: safariIconAsset,
-} as const satisfies Record<BrowserName, string>;
-
-export const BrowserStatus = ({ name, available }: { name: BrowserName; available: boolean }) => (
-  <span className={styles.browser} data-available={available}>
-    <img
-      src={BROWSER_NAME_TO_IMAGE_SRC[name]}
-      className={styles["browser-icon"]}
-      alt={`${name} ${available ? "Available" : "Unavailable"}`}
-    />
-    {available ? <CheckIcon /> : <CrossIcon />}
-  </span>
-);
+export const availabilityIcons = {
+  limited: LimitedIcon,
+  widely: WidelyIcon,
+  newly: NewlyIcon,
+  unknown: NoDataIcon,
+} as const satisfies Record<BaselineStatus, React.FC>;
