@@ -32,7 +32,7 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
       <summary className={styles["baseline-summary"]}>
         <div className={styles["baseline-header"]}>
           <span className={styles["baseline-title"]}>
-            <Icon />
+            <Icon width="var(--size-5)" height="var(--size-5)" />
             {getStatusLabel(status, lowDate)}
           </span>
         </div>
