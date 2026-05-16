@@ -89,19 +89,28 @@ export const CheckIcon = () => (
     fill="#1E8E3E"
   >
     <circle cx="12" cy="12" r="10" fill="none" stroke="#1E8E3E" />
-    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+    <path
+      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+      transform="scale(0.8) translate(3 3)"
+    />
   </svg>
 );
 export const InfoIcon = () => (
   <svg height={statusIconSize} viewBox="0 0 24 24" fill="currentColor">
     <circle cx="12" cy="12" r="10" fill="none" />
-    <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+    <path
+      d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+      transform="scale(0.8) translate(3 3)"
+    />
   </svg>
 );
 export const CrossIcon = () => (
   <svg height={statusIconSize} viewBox="0 0 24 24" fill="#EA8600">
     <circle cx="12" cy="12" r="10" fill="none" stroke="#EA8600" />
-    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+    <path
+      d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+      transform="scale(0.8) translate(3 3)"
+    />
   </svg>
 );
 
@@ -116,10 +125,10 @@ const BROWSER_NAME_TO_IMAGE_SRC = {
 } as const satisfies Record<BrowserName, string>;
 
 export const BrowserStatus = ({ name, available }: { name: BrowserName; available: boolean }) => (
-  <span className={styles.browser}>
+  <span className={styles.browser} data-available={available}>
     <img
       src={BROWSER_NAME_TO_IMAGE_SRC[name]}
-      className={`${available ? "" : styles.unavailable} ${styles["browser-icon"]}`}
+      className={styles["browser-icon"]}
       alt={`${name} ${available ? "Available" : "Unavailable"}`}
     />
     {available ? <CheckIcon /> : <CrossIcon />}
