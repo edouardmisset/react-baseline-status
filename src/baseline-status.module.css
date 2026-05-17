@@ -63,14 +63,7 @@
   padding-inline: var(--size-3);
   padding-block: var(--size-2);
 
-  --_shadow-blur: 12px;
-  --_shadow-offset: 3px;
-  --_shadow-color: var(--surface-1);
-  text-shadow:
-    0px var(--_shadow-offset) var(--_shadow-blur) var(--_shadow-color),
-    0px calc(-1 * var(--_shadow-offset)) var(--_shadow-blur) var(--_shadow-color),
-    var(--_shadow-offset) 0px var(--_shadow-blur) var(--_shadow-color),
-    calc(-1 * var(--_shadow-offset)) 0px var(--_shadow-blur) var(--_shadow-color);
+  text-shadow: 0 0 10px var(--surface-1);
 
   background-image:
     radial-gradient(var(--pattern-color) var(--size), transparent var(--size)),
