@@ -1,8 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { FeatureBaselineStatus, FeatureStatusSkeleton } from "./feature-baseline-status";
+import { FeatureBaselineStatus } from "./feature-baseline-status";
 import "./global.css";
 import styles from "./main.module.css";
+import { FeatureStatusSkeleton } from "./feature-status-skeleton";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

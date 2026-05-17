@@ -143,34 +143,3 @@
   column-gap: var(--size-2);
   row-gap: var(--size-1);
 }
-
-/* Loading */
-.skeletonBox {
-  block-size: var(--size-4);
-  animation: pulse 1.5s infinite ease-in-out;
-}
-
-.baselineStatusSkeleton {
-  background-color: blue;
-}
-.featureNameSkeleton {
-  background-color: white;
-}
-.browsersSkeleton {
-  background-color: green;
-  min-inline-size: 14rem;
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 0.6;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0.6;
-  }
-}

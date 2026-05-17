@@ -1,0 +1,49 @@
+/* Loading */
+.skeletonBox {
+  block-size: var(--size-4);
+
+  --skeleton-highlight-1: var(--surface-2);
+  --skeleton-highlight-2: var(--surface-2);
+  --skeleton-speed: 3s;
+
+  border-radius: var(--size-1);
+  background-image: linear-gradient(
+    in oklab to left,
+    var(--surface-1) 0%,
+    var(--surface-1) 10%,
+    var(--skeleton-highlight-1) 25%,
+    var(--skeleton-highlight-2) 75%,
+    var(--surface-1) 90%,
+    var(--surface-1) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeletonSweep var(--skeleton-speed) infinite linear;
+}
+
+.baselineStatusSkeleton {
+  --skeleton-highlight-1: var(--bs-color-newly);
+  --skeleton-highlight-2: var(--bs-color-newly-secondary);
+}
+
+.featureNameSkeleton {
+  --skeleton-highlight-1: color-mix(in oklch, var(--text-1) 50%, var(--surface-1));
+  --skeleton-highlight-2: color-mix(in oklch, var(--text-1) 20%, var(--surface-1));
+  --skeleton-speed: 2s;
+}
+
+.browsersSkeleton {
+  --skeleton-highlight-1: var(--bs-color-widely);
+  --skeleton-highlight-2: var(--bs-color-limited-secondary);
+  --skeleton-speed: 4s;
+  min-inline-size: 14rem;
+}
+
+@keyframes skeletonSweep {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
+}
