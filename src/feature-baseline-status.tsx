@@ -2,7 +2,7 @@
 
 import { Suspense, use } from "react";
 import { fetchFeature, type BaselineStatus } from "./data";
-import styles from "./baseline-status.module.css";
+import styles from "./feature-baseline-status.module.css";
 
 import type { FeatureId } from "./feature-ids";
 import { BrowserStatus } from "./icons/browser-icons";
@@ -14,13 +14,22 @@ export const STATUS_LABELS = {
   limited: "Limited availability",
   unknown: "Unknown",
 } as const satisfies Record<BaselineStatus, string>;
-
 export const BROWSER_NAMES = ["Chrome", "Edge", "Firefox", "Safari"] as const;
 export type BrowserName = (typeof BROWSER_NAMES)[number];
 
-export function BaselineStatus({ featureId }: { featureId: FeatureId }) {
+export const FeatureStatusSkeleton: React.FC = () => (
+  <div className={`${styles.baselineStatus}`}>
+    <div className={styles.baselineSummary}>
+      <div className={`${styles.skeletonBox} ${styles.baselineStatusSkeleton}`} />
+      <div className={`${styles.skeletonBox} ${styles.featureNameSkeleton}`} />
+      <div className={`${styles.skeletonBox} ${styles.browsersSkeleton}`} />
+    </div>
+  </div>
+);
+
+export function FeatureBaselineStatus({ featureId }: { featureId: FeatureId }) {
   return (
-    <Suspense fallback={<div className={`${styles.baselineStatus} ${styles.baselineSkeleton}`} />}>
+    <Suspense fallback={<FeatureStatusSkeleton />}>
       <FeatureDetails featureId={featureId} />
     </Suspense>
   );

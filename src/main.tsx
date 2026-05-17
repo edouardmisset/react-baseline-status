@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BaselineStatus } from "./baseline-status";
+import { FeatureBaselineStatus, FeatureStatusSkeleton } from "./feature-baseline-status";
 import "./global.css";
 import styles from "./main.module.css";
 
@@ -9,10 +9,11 @@ createRoot(document.getElementById("root")!).render(
     <main className={styles.main}>
       <h1>React Baseline Status</h1>
       <section className={styles.baselineStatusList}>
-        <BaselineStatus featureId="a" />
-        <BaselineStatus featureId="state" />
-        <BaselineStatus featureId="accent-color" />
-        <BaselineStatus featureId="attr" />
+        <FeatureStatusSkeleton />
+        <FeatureBaselineStatus featureId="a" />
+        <FeatureBaselineStatus featureId="state" />
+        <FeatureBaselineStatus featureId="accent-color" />
+        <FeatureBaselineStatus featureId="attr" />
       </section>
     </main>
   </StrictMode>,

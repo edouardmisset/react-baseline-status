@@ -1,4 +1,4 @@
-import type { BrowserName } from "./baseline-status";
+import type { BrowserName } from "./feature-baseline-status";
 import type { FeatureId } from "./feature-ids";
 
 export const BASELINE_STATUS = ["widely", "newly", "limited", "unknown"] as const;

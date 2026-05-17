@@ -2,7 +2,7 @@ import chromeIconAsset from "../assets/chrome.svg";
 import edgeIconAsset from "../assets/edge.svg";
 import firefoxIconAsset from "../assets/firefox.svg";
 import safariIconAsset from "../assets/safari.svg";
-import type { BrowserName } from "../baseline-status";
+import type { BrowserName } from "../feature-baseline-status";
 import styles from "./browser-icons.module.css";
 import type { SVGAttributes } from "react";
 

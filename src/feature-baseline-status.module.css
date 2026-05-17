@@ -49,14 +49,17 @@
 
 .baselineName {
   --size: 1px;
-  --distance: 10;
+  --distance: 12;
   --half-distance: calc(var(--distance) / 2);
   --pattern-color: oklch(from var(--text-1) l c h / 0.7);
 
+  display: grid;
   max-inline-size: max-content;
+  max-height: var(--size-4);
+  align-content: center;
   margin: 0;
   padding-inline: var(--size-3);
-  padding-block: var(--size-2);
+  padding-block: var(--size-1);
 
   border-radius: 3px;
 
@@ -142,11 +145,20 @@
 }
 
 /* Loading */
-.baselineSkeleton {
-  block-size: var(--size-5);
-  background: var(--surface-2);
-  border-radius: var(--size-2);
+.skeletonBox {
+  block-size: var(--size-4);
   animation: pulse 1.5s infinite ease-in-out;
+}
+
+.baselineStatusSkeleton {
+  background-color: blue;
+}
+.featureNameSkeleton {
+  background-color: white;
+}
+.browsersSkeleton {
+  background-color: green;
+  min-inline-size: 14rem;
 }
 
 @keyframes pulse {
