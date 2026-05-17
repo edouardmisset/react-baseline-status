@@ -3,6 +3,9 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   base: "/react-baseline-status/",
+  build: {
+    target: "esnext",
+  },
   fmt: {
     ignorePatterns: [],
   },
