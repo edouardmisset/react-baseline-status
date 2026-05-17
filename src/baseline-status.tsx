@@ -39,7 +39,7 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
       <summary className={styles.baselineSummary}>
         <div className={styles.baselineHeader}>
           <span className={styles.baselineTitle}>
-            <AvailabilityIcon className={styles.baselineIcon} />
+            <AvailabilityIcon />
             <span className={styles.baselineStatusLabel}>{STATUS_LABELS[status]}</span>
             {isNewlyAvailableWithDate ? (
               <span className={styles.baselineBadge}>{new Date(lowDate).getFullYear()}</span>

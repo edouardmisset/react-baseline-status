@@ -38,11 +38,6 @@
   color: color-mix(var(--text-1) 50%, var(--baseline-status-color));
 }
 
-.baselineIcon {
-  inline-size: var(--size-5);
-  aspect-ratio: 1;
-}
-
 .baselineStatusLabel {
   text-decoration-skip-ink: all;
   text-underline-offset: max(0.25em, 4px);
@@ -62,6 +57,8 @@
   margin: 0;
   padding-inline: var(--size-3);
   padding-block: var(--size-2);
+
+  border-radius: 3px;
 
   text-shadow: 0 0 10px var(--surface-1);
 
