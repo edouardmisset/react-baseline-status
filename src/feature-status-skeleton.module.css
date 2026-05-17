@@ -6,6 +6,8 @@
   --skeleton-highlight-2: var(--surface-2);
   --skeleton-speed: 3s;
 
+  will-change: background-position;
+
   border-radius: var(--size-1);
   background-image: linear-gradient(
     in oklab to left,
