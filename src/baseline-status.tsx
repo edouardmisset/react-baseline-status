@@ -36,8 +36,10 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
             {getStatusLabel(status, lowDate)}
           </span>
         </div>
-        <h3 className={styles["baseline-logo"]}>
-          <strong>{name}</strong>
+        <h3 className={styles["baseline-name"]}>
+          <strong>
+            <code>{name}</code>
+          </strong>
         </h3>
         <div className={styles["baseline-browsers"]}>
           <BrowserStatus name="Chrome" available={browsers.chrome.status === "available"} />
@@ -69,7 +71,7 @@ function getStatusLabel(status: BaselineStatus, lowDate?: string) {
   } as const satisfies Record<BaselineStatus, string>;
   return (
     <>
-      {labels[status]}
+      <span className={styles["baseline-status-label"]}>{labels[status]}</span>
       {status === "newly" && lowDate && (
         <span className={styles["baseline-badge"]}>{new Date(lowDate).getFullYear()}</span>
       )}
