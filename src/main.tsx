@@ -11,10 +11,29 @@ createRoot(document.getElementById("root")!).render(
       <h1>React Baseline Status</h1>
       <section className={styles.baselineStatusList}>
         <FeatureStatusSkeleton />
-        <FeatureBaselineStatus featureId="a" />
-        <FeatureBaselineStatus featureId="state" />
+
+        {/* Web Platform */}
+        <FeatureBaselineStatus featureId="customizable-select" />
+
+        {/* JavaScript */}
+        <FeatureBaselineStatus featureId="temporal" />
+        <FeatureBaselineStatus featureId="intl-relative-time-format" />
+
+        {/* CSS */}
+        <FeatureBaselineStatus featureId="masonry" />
         <FeatureBaselineStatus featureId="accent-color" />
         <FeatureBaselineStatus featureId="attr" />
+        <FeatureBaselineStatus featureId="nesting" />
+        <FeatureBaselineStatus featureId="contrast-color" />
+        <FeatureBaselineStatus featureId="view-transitions" />
+        <FeatureBaselineStatus featureId="subgrid" />
+        <FeatureBaselineStatus featureId="cascade-layers" />
+
+        {/* HTML */}
+        <FeatureBaselineStatus featureId="popover-hint" />
+        <FeatureBaselineStatus featureId="popover" />
+        <FeatureBaselineStatus featureId="dialog" />
+        <FeatureBaselineStatus featureId="search" />
       </section>
     </main>
   </StrictMode>,
