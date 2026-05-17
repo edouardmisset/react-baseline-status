@@ -3,18 +3,24 @@
 import { Suspense, use } from "react";
 import { fetchFeature, type BaselineStatus } from "./data";
 import styles from "./baseline-status.module.css";
+
 import type { FeatureId } from "./feature-ids";
-import { availabilityIcons, BrowserStatus } from "./icons";
+import { BrowserStatus } from "./icons/browser-icons";
+import { AVAILABILITY_ICONS } from "./icons/baseline-icons";
 
-interface BaselineStatusProps {
-  featureId: FeatureId;
-}
+export const STATUS_LABELS = {
+  widely: "Widely available",
+  newly: "Newly available",
+  limited: "Limited availability",
+  unknown: "Unknown",
+} as const satisfies Record<BaselineStatus, string>;
 
-export function BaselineStatus({ featureId }: BaselineStatusProps) {
+export const BROWSER_NAMES = ["Chrome", "Edge", "Firefox", "Safari"] as const;
+export type BrowserName = (typeof BROWSER_NAMES)[number];
+
+export function BaselineStatus({ featureId }: { featureId: FeatureId }) {
   return (
-    <Suspense
-      fallback={<div className={`${styles["baseline-status"]} ${styles["baseline-skeleton"]}`} />}
-    >
+    <Suspense fallback={<div className={`${styles.baselineStatus} ${styles.baselineSkeleton}`} />}>
       <FeatureDetails featureId={featureId} />
     </Suspense>
   );
@@ -25,31 +31,38 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
 
   const { status, name, browsers, lowDate } = data;
 
-  const Icon = availabilityIcons[status];
+  const AvailabilityIcon = AVAILABILITY_ICONS[status];
+  const isNewlyAvailableWithDate = status === "newly" && lowDate;
 
   return (
-    <details className={styles["baseline-status"]} data-status={status}>
-      <summary className={styles["baseline-summary"]}>
-        <div className={styles["baseline-header"]}>
-          <span className={styles["baseline-title"]}>
-            <Icon width="var(--size-5)" height="var(--size-5)" />
-            {getStatusLabel(status, lowDate)}
+    <details className={styles.baselineStatus} data-status={status}>
+      <summary className={styles.baselineSummary}>
+        <div className={styles.baselineHeader}>
+          <span className={styles.baselineTitle}>
+            <AvailabilityIcon className={styles.baselineIcon} />
+            <span className={styles.baselineStatusLabel}>{STATUS_LABELS[status]}</span>
+            {isNewlyAvailableWithDate ? (
+              <span className={styles.baselineBadge}>{new Date(lowDate).getFullYear()}</span>
+            ) : null}
           </span>
         </div>
-        <h3 className={styles["baseline-name"]}>
+        <h3 className={styles.baselineName}>
           <strong>
             <code>{name}</code>
           </strong>
         </h3>
-        <div className={styles["baseline-browsers"]}>
-          <BrowserStatus name="Chrome" available={browsers.chrome.status === "available"} />
-          <BrowserStatus name="Edge" available={browsers.edge.status === "available"} />
-          <BrowserStatus name="Firefox" available={browsers.firefox.status === "available"} />
-          <BrowserStatus name="Safari" available={browsers.safari.status === "available"} />
+        <div className={styles.baselineBrowsers}>
+          {BROWSER_NAMES.map((browser) => (
+            <BrowserStatus
+              key={browser}
+              name={browser}
+              available={browsers[browser].status === "available"}
+            />
+          ))}
         </div>
       </summary>
 
-      <div className={styles["baseline-content"]}>
+      <div className={styles.baselineContent}>
         <a
           href={`https://webstatus.dev/features/${featureId}`}
           target="_blank"
@@ -59,22 +72,5 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
         </a>
       </div>
     </details>
-  );
-}
-
-function getStatusLabel(status: BaselineStatus, lowDate?: string) {
-  const labels = {
-    widely: "Widely available",
-    newly: "Newly available",
-    limited: "Limited availability",
-    unknown: "Unknown",
-  } as const satisfies Record<BaselineStatus, string>;
-  return (
-    <>
-      <span className={styles["baseline-status-label"]}>{labels[status]}</span>
-      {status === "newly" && lowDate && (
-        <span className={styles["baseline-badge"]}>{new Date(lowDate).getFullYear()}</span>
-      )}
-    </>
   );
 }

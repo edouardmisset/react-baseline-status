@@ -1,0 +1,48 @@
+/* Browser Support */
+.browser {
+  [data-available="true"]& {
+    --browser-availability-color: light-dark(
+      oklch(from var(--bs-color-widely) calc(l * 1.5) calc(c / 4) h),
+      oklch(from var(--bs-color-widely) calc(l / 2) calc(c / 5) h)
+    );
+  }
+
+  [data-available="false"]& {
+    --browser-availability-color: light-dark(
+      oklch(from var(--bs-color-limited) calc(l * 1.2) calc(c / 2) h),
+      oklch(from var(--bs-color-limited) calc(l / 2) calc(c / 5) h)
+    );
+  }
+
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+
+  border-radius: 100vw;
+  background: radial-gradient(
+    ellipse at 0,
+    var(--surface-1),
+    var(--surface-1) 50%,
+    var(--browser-availability-color) 90%
+  );
+  box-shadow: var(--size-1) var(--size-1) var(--size-5) var(--size-3)
+    var(--browser-availability-color);
+}
+
+.browserIcon {
+  z-index: 2;
+  inline-size: var(--size-4);
+  aspect-ratio: 1;
+  filter: drop-shadow(2px 0 1px var(--drop-shadow-color))
+    drop-shadow(0 2px 1px var(--drop-shadow-color)) drop-shadow(-2px 0 1px var(--drop-shadow-color))
+    drop-shadow(0 -2px 1px var(--drop-shadow-color));
+}
+
+.browserStatus {
+  inline-size: var(--size-4);
+  block-size: var(--size-4);
+  flex-shrink: 0;
+  z-index: 1;
+  transform: translatex(-5px);
+}

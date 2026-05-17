@@ -1,4 +1,5 @@
-import { type FeatureId } from "./feature-ids";
+import type { BrowserName } from "./baseline-status";
+import type { FeatureId } from "./feature-ids";
 
 export const BASELINE_STATUS = ["widely", "newly", "limited", "unknown"] as const;
 export type BaselineStatus = (typeof BASELINE_STATUS)[number];
@@ -17,12 +18,7 @@ export interface FeatureData {
   status: BaselineStatus;
   lowDate?: string;
   name: string;
-  browsers: {
-    chrome: BrowserImplementationDetails;
-    edge: BrowserImplementationDetails;
-    firefox: BrowserImplementationDetails;
-    safari: BrowserImplementationDetails;
-  };
+  browsers: Record<BrowserName, BrowserImplementationDetails>;
 }
 
 const cache = new Map<FeatureId, Promise<FeatureData>>();
@@ -64,7 +60,7 @@ async function loadFeature(id: FeatureId): Promise<FeatureData> {
 
 const buildMajorBrowserImplementations = (
   json: any = {},
-): Record<keyof FeatureData["browsers"], BrowserImplementationDetails> => {
+): Record<BrowserName, BrowserImplementationDetails> => {
   const buildBrowserImplementationDetails = (browser: string): BrowserImplementationDetails =>
     (json.browser_implementations || {})[browser] || {
       date: "",
@@ -73,9 +69,9 @@ const buildMajorBrowserImplementations = (
     };
 
   return {
-    chrome: buildBrowserImplementationDetails("chrome"),
-    edge: buildBrowserImplementationDetails("edge"),
-    firefox: buildBrowserImplementationDetails("firefox"),
-    safari: buildBrowserImplementationDetails("safari"),
+    Chrome: buildBrowserImplementationDetails("chrome"),
+    Edge: buildBrowserImplementationDetails("edge"),
+    Firefox: buildBrowserImplementationDetails("firefox"),
+    Safari: buildBrowserImplementationDetails("safari"),
   };
 };
