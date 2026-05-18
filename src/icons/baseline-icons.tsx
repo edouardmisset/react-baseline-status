@@ -1,10 +1,10 @@
 import type { BaselineStatus } from "../data";
 import type { FC, SVGAttributes } from "react";
 
-const iconSize = "var(--size-3)";
+const iconSize = "var(--size-5)";
 
 export const WidelyIcon = (props: SVGAttributes<SVGElement>) => (
-  <svg height={iconSize} {...props} viewBox="0 0 500 284" fill="none">
+  <svg width={iconSize} {...props} viewBox="0 0 500 284" fill="none">
     <path fill="var(--bs-color-widely)" d="m0 142 34-34 108 108L358 0l34 34-250 250L0 142Z" />
     <path
       fill="var(--bs-color-widely-secondary)"
@@ -14,7 +14,7 @@ export const WidelyIcon = (props: SVGAttributes<SVGElement>) => (
 );
 
 export const NewlyIcon = (props: SVGAttributes<SVGElement>) => (
-  <svg height={iconSize} {...props} fill="none" viewBox="0 59.17 284 156.07">
+  <svg width={iconSize} {...props} fill="none" viewBox="0 59.17 284 156.07">
     <path
       fill="var(--bs-color-newly-secondary)"
       d="m78.893 59.167 15.774 15.608L78.893 90.383l-15.786 -15.62zm31.548 31.216 15.774 15.608 -15.774 15.608 -15.774 -15.62zm126.226 0 15.774 15.608 -15.774 15.608 -15.786 -15.62zm31.548 31.216L284 137.208l-15.786 15.608 -15.774 -15.62zm-31.548 31.217 15.774 15.596 -15.774 15.62 -15.786 -15.62zm-31.559 31.204 15.786 15.62 -15.786 15.596 -15.775 -15.609zm-31.548 -31.204 15.773 15.596 -15.786 15.62 -15.774 -15.62zM47.333 90.383l15.774 15.608 -15.774 15.608 -15.774 -15.62z"
@@ -27,7 +27,7 @@ export const NewlyIcon = (props: SVGAttributes<SVGElement>) => (
 );
 
 export const LimitedIcon = (props: SVGAttributes<SVGElement>) => (
-  <svg height={iconSize} {...props} viewBox="0 0 500 284" fill="none">
+  <svg width={iconSize} {...props} viewBox="0 0 500 284" fill="none">
     <path
       fill="var(--bs-color-limited)"
       d="M142.007 0 222 80l-34 34-79.993-80 34-34ZM108 250 358 0l34 34-250 250-34-34ZM391.992 250 312 170l-34 34 79.992 80 34-34Z"
@@ -40,7 +40,7 @@ export const LimitedIcon = (props: SVGAttributes<SVGElement>) => (
 );
 
 export const NoDataIcon = (props: SVGAttributes<SVGElement>) => (
-  <svg height={iconSize} {...props} viewBox="0 0 36 20" aria-hidden="true">
+  <svg width={iconSize} {...props} viewBox="0 0 36 20" aria-hidden="true">
     <path fill="var(--baseline-icon-no_data)" d="M18 8L20 10L18 12L16 10L18 8Z" />
     <path
       fill="var(--baseline-icon-no_data)"
@@ -52,7 +52,7 @@ export const NoDataIcon = (props: SVGAttributes<SVGElement>) => (
 );
 
 export const DiscouragedIcon = (props: SVGAttributes<SVGElement>) => (
-  <svg height={iconSize} {...props} viewBox="0 0 36 20" fill="none">
+  <svg width={iconSize} {...props} viewBox="0 0 36 20" fill="none">
     <path d="M10 0L12 2L10 4L8 2L10 0Z" fill="var(--bs-color-unknown)" />
     <path d="M26 0L28 2L26 4L24 2L26 0Z" fill="var(--bs-color-unknown)" />
     <path d="M14 4L16 6L14 8L12 6L14 4Z" fill="var(--bs-color-unknown)" />
