@@ -92,7 +92,7 @@
 }
 
 .baselineContent {
-  padding: var(--size-3);
+  padding: var(--size-3) var(--size-4);
   border-top: 1px solid var(--border-color);
   border-radius: 0 0 var(--size-2) var(--size-2);
 }
@@ -142,4 +142,29 @@
   flex-wrap: wrap;
   column-gap: var(--size-2);
   row-gap: var(--size-1);
+}
+
+.baselineDescription {
+  font-family: "Family", "Georgia Pro", Georgia, "URW Bookman", "URW Bookman L", serif;
+  max-inline-size: 60ch;
+  text-wrap: pretty;
+}
+
+.links {
+  display: flex;
+  gap: var(--size-3);
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.canIUse {
+  display: inline-block;
+  aspect-ratio: 1;
+  max-height: 2rem;
+
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 }

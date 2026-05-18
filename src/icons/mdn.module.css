@@ -1,0 +1,13 @@
+.mdnSearchBtn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--duration-med) var(--ease-out);
+  flex-shrink: 0;
+}

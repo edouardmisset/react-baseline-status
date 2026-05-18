@@ -19,9 +19,12 @@ export interface FeatureData {
   lowDate?: string;
   name: string;
   browsers: Record<BrowserName, BrowserImplementationDetails>;
+  description?: string;
+  canIUseId?: string;
 }
 
 const cache = new Map<FeatureId, Promise<FeatureData>>();
+const API_BASE = `https://api.webstatus.dev/v1`;
 
 export function fetchFeature(id: FeatureId): Promise<FeatureData> {
   const existing = cache.get(id);
@@ -34,18 +37,30 @@ export function fetchFeature(id: FeatureId): Promise<FeatureData> {
 
 async function loadFeature(id: FeatureId): Promise<FeatureData> {
   try {
-    const response = await fetch(`https://api.webstatus.dev/v1/features/${id}`);
-    if (!response.ok) throw new Error(`API Error ${response.status}`);
+    const [feature, featureMetadata] = await Promise.allSettled([
+      fetch(`${API_BASE}/features/${id}`),
+      fetch(`${API_BASE}/features/${id}/feature-metadata`),
+    ]);
 
-    const json = await response.json();
-    const { low_date = "", status = "unknown" } = json.baseline || {};
+    if (featureMetadata.status !== "fulfilled")
+      throw new Error(`API Error ${featureMetadata.status}`);
+    if (feature.status !== "fulfilled") throw new Error(`API Error ${feature.status}`);
+
+    const featureJson = await feature.value.json();
+    const metadataJson = await featureMetadata.value.json();
+    const { low_date = "", status = "unknown" } = featureJson.baseline ?? {};
+    const { description = "", can_i_use = [] } = metadataJson ?? {};
+
+    const { items: [{ id: canIUseId } = {}] = [] } = can_i_use;
 
     return {
       id,
       status,
       lowDate: low_date,
-      name: json.name || id,
-      browsers: buildMajorBrowserImplementations(json),
+      name: featureJson.name ?? id,
+      browsers: buildMajorBrowserImplementations(featureJson),
+      description,
+      canIUseId,
     };
   } catch (err) {
     console.error(err);
@@ -62,7 +77,7 @@ const buildMajorBrowserImplementations = (
   json: any = {},
 ): Record<BrowserName, BrowserImplementationDetails> => {
   const buildBrowserImplementationDetails = (browser: string): BrowserImplementationDetails =>
-    (json.browser_implementations || {})[browser] || {
+    (json.browser_implementations ?? {})[browser] ?? {
       date: "",
       version: "",
       status: undefined,

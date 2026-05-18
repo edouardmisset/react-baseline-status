@@ -8,6 +8,7 @@ import { FeatureStatusSkeleton } from "./feature-status-skeleton";
 import type { FeatureId } from "./feature-ids";
 import { BrowserStatus } from "./icons/browser-icons";
 import { AVAILABILITY_ICONS } from "./icons/baseline-icons";
+import { MDNIcon } from "./icons/mdn";
 
 export const STATUS_LABELS = {
   widely: "Widely available",
@@ -17,6 +18,7 @@ export const STATUS_LABELS = {
 } as const satisfies Record<BaselineStatus, string>;
 export const BROWSER_NAMES = ["Chrome", "Edge", "Firefox", "Safari"] as const;
 export type BrowserName = (typeof BROWSER_NAMES)[number];
+const CAN_I_USE_BASE_URL = `https://caniuse.com/`;
 
 export function FeatureBaselineStatus({ featureId }: { featureId: FeatureId }) {
   return (
@@ -27,15 +29,18 @@ export function FeatureBaselineStatus({ featureId }: { featureId: FeatureId }) {
 }
 
 function FeatureDetails({ featureId }: { featureId: FeatureId }) {
-  const data = use(fetchFeature(featureId));
+  const feature = use(fetchFeature(featureId));
 
-  const { status, name, browsers, lowDate } = data;
+  const { status, name, browsers, lowDate, description, canIUseId } = feature;
 
   const AvailabilityIcon = AVAILABILITY_ICONS[status];
   const isNewlyAvailableWithDate = status === "newly" && lowDate;
+  const caniuseUrl = canIUseId
+    ? `${CAN_I_USE_BASE_URL}${encodeURIComponent(canIUseId)}`
+    : `${CAN_I_USE_BASE_URL}?search=${encodeURIComponent(name)}`;
 
   return (
-    <details className={styles.baselineStatus} data-status={status}>
+    <details className={styles.baselineStatus} data-status={status} open>
       <summary className={styles.baselineSummary}>
         <div className={styles.baselineHeader}>
           <span className={styles.baselineTitle}>
@@ -63,13 +68,26 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
       </summary>
 
       <div className={styles.baselineContent}>
-        <a
-          href={`https://webstatus.dev/features/${featureId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View on WebStatus.dev
-        </a>
+        <p className={styles.baselineDescription}>{description}</p>
+        <div className={styles.links}>
+          <a
+            href={`https://developer.mozilla.org/en-US/search?q=${encodeURIComponent(name)}`}
+            title="Search on MDN for documentation"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <MDNIcon />
+          </a>
+          <a
+            href={caniuseUrl}
+            title="Search on Can I Use for browser support"
+            className={styles.canIUse}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img width={24} height={24} src="assets/can-i-use.png" alt="Can I Use" />
+          </a>
+        </div>
       </div>
     </details>
   );
