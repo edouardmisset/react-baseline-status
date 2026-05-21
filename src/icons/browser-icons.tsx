@@ -3,6 +3,7 @@ import edgeIconAsset from "../assets/edge.svg";
 import firefoxIconAsset from "../assets/firefox.svg";
 import safariIconAsset from "../assets/safari.svg";
 import type { BrowserName } from "../feature-baseline-status";
+import { formatMonthAndYear } from "../utils/date";
 import styles from "./browser-icons.module.css";
 import type { SVGAttributes } from "react";
 
@@ -20,19 +21,6 @@ type BrowserStatusProps = {
   date: string;
   version: string;
 };
-
-const MONTH_YEAR_FORMATTER = new Intl.DateTimeFormat("en-US", {
-  month: "long",
-  year: "numeric",
-});
-
-function formatMonthAndYear(date: string) {
-  const parsedDate = new Date(date);
-
-  if (Number.isNaN(parsedDate.getTime())) return "an unknown date";
-
-  return MONTH_YEAR_FORMATTER.format(parsedDate);
-}
 
 function buildBrowserTitle({ name, featureName, available, date, version }: BrowserStatusProps) {
   return available
