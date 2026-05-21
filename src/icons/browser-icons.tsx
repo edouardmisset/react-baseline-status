@@ -15,17 +15,43 @@ const BROWSER_NAME_TO_IMAGE_SRC = {
 
 type BrowserStatusProps = {
   name: BrowserName;
+  featureName: string;
   available: boolean;
+  date: string;
+  version: string;
 };
 
-export const BrowserStatus = ({ name, available }: BrowserStatusProps) => (
-  <span className={styles.browser} data-available={available}>
+const MONTH_YEAR_FORMATTER = new Intl.DateTimeFormat("en-US", {
+  month: "long",
+  year: "numeric",
+});
+
+function formatMonthAndYear(date: string) {
+  const parsedDate = new Date(date);
+
+  if (Number.isNaN(parsedDate.getTime())) return "an unknown date";
+
+  return MONTH_YEAR_FORMATTER.format(parsedDate);
+}
+
+function buildBrowserTitle({ name, featureName, available, date, version }: BrowserStatusProps) {
+  return available
+    ? `${name} implemented ${featureName} on ${formatMonthAndYear(date)} in version ${version || "an unknown version"}`
+    : `${name} hasn't implemented ${featureName} yet`;
+}
+
+export const BrowserStatus = (props: BrowserStatusProps) => (
+  <span
+    className={styles.browser}
+    data-available={props.available}
+    title={buildBrowserTitle(props)}
+  >
     <img
-      src={BROWSER_NAME_TO_IMAGE_SRC[name]}
+      src={BROWSER_NAME_TO_IMAGE_SRC[props.name]}
       className={styles.browserIcon}
-      alt={`${name} ${available ? "Available" : "Unavailable"}`}
+      alt={`${props.name} ${props.available ? "Available" : "Unavailable"}`}
     />
-    {available ? <CheckIcon /> : <CrossIcon />}
+    {props.available ? <CheckIcon /> : <CrossIcon />}
   </span>
 );
 

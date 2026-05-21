@@ -54,13 +54,20 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
           </strong>
         </h3>
         <div className={styles.baselineBrowsers}>
-          {BROWSER_NAMES.map((browser) => (
-            <BrowserStatus
-              key={browser}
-              name={browser}
-              available={browsers[browser].status === "available"}
-            />
-          ))}
+          {BROWSER_NAMES.map((browser) => {
+            const implementation = browsers[browser];
+
+            return (
+              <BrowserStatus
+                key={browser}
+                name={browser}
+                featureName={name}
+                available={implementation.status === "available"}
+                date={implementation.date}
+                version={implementation.version}
+              />
+            );
+          })}
         </div>
       </summary>
 
