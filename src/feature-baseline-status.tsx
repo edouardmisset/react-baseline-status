@@ -17,7 +17,7 @@ export const STATUS_LABELS = {
 } as const satisfies Record<BaselineStatus, string>;
 export const BROWSER_NAMES = ["Chrome", "Edge", "Firefox", "Safari"] as const;
 export type BrowserName = (typeof BROWSER_NAMES)[number];
-const CAN_I_USE_BASE_URL = `https://caniuse.com/`;
+const CAN_I_USE_BASE_URL = "https://caniuse.com/";
 
 export function FeatureBaselineStatus({ featureId }: { featureId: FeatureId }) {
   return (
@@ -34,9 +34,7 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
 
   const AvailabilityIcon = AVAILABILITY_ICONS[status];
   const isNewlyAvailableWithDate = status === "newly" && lowDate;
-  const caniuseUrl = canIUseId
-    ? `${CAN_I_USE_BASE_URL}${encodeURIComponent(canIUseId)}`
-    : `${CAN_I_USE_BASE_URL}?search=${encodeURIComponent(name)}`;
+  const caniuseUrl = `${CAN_I_USE_BASE_URL}${canIUseId ? encodeURIComponent(canIUseId) : `?search=${encodeURIComponent(name)}`}`;
 
   return (
     <details className={styles.baselineStatus} data-status={status} open>
