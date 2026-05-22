@@ -40,7 +40,7 @@ export const LimitedIcon = (props: SVGAttributes<SVGElement>) => (
 );
 
 export const NoDataIcon = (props: SVGAttributes<SVGElement>) => (
-  <svg width={iconSize} {...props} viewBox="0 0 36 20" aria-hidden="true">
+  <svg width={iconSize} {...props} viewBox="0 0 36 20">
     <path fill="var(--baseline-icon-no_data)" d="M18 8L20 10L18 12L16 10L18 8Z" />
     <path
       fill="var(--baseline-icon-no_data)"
@@ -76,4 +76,5 @@ export const AVAILABILITY_ICONS = {
   widely: WidelyIcon,
   newly: NewlyIcon,
   unknown: NoDataIcon,
+  discouraged: DiscouragedIcon,
 } as const satisfies Record<BaselineStatus, FC<SVGAttributes<SVGElement>>>;

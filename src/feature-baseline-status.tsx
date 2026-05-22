@@ -1,5 +1,3 @@
-"use client";
-
 import { Suspense, use } from "react";
 import { fetchFeature, type BaselineStatus } from "./data";
 import styles from "./feature-baseline-status.module.css";
@@ -15,6 +13,7 @@ export const STATUS_LABELS = {
   newly: "Newly available",
   limited: "Limited availability",
   unknown: "Unknown",
+  discouraged: "Discouraged",
 } as const satisfies Record<BaselineStatus, string>;
 export const BROWSER_NAMES = ["Chrome", "Edge", "Firefox", "Safari"] as const;
 export type BrowserName = (typeof BROWSER_NAMES)[number];

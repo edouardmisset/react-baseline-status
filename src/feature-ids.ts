@@ -1180,4 +1180,4 @@ export const featureIds = [
   "zstd",
 ] as const;
 
-export type FeatureId = typeof featureIds[number];
+export type FeatureId = (typeof featureIds)[number];

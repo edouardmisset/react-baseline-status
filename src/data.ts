@@ -1,11 +1,11 @@
 import type { BrowserName } from "./feature-baseline-status";
 import type { FeatureId } from "./feature-ids";
 
-export const BASELINE_STATUS = ["widely", "newly", "limited", "unknown"] as const;
+const BASELINE_STATUS = ["widely", "newly", "limited", "unknown", "discouraged"] as const;
 export type BaselineStatus = (typeof BASELINE_STATUS)[number];
 
-export const BROWSER_STATUS = ["available"] as const;
-export type BrowserStatus = (typeof BROWSER_STATUS)[number] | undefined;
+const BROWSER_STATUS = ["available"] as const;
+type BrowserStatus = (typeof BROWSER_STATUS)[number] | undefined;
 
 type BrowserImplementationDetails = {
   date: string;

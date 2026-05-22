@@ -3,7 +3,6 @@ import styles from "./mdn.module.css";
 export function MDNIcon() {
   return (
     <svg
-      aria-hidden="true"
       width="20"
       height="20"
       viewBox="0 0 24 24"
