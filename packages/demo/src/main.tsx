@@ -6,6 +6,8 @@ import "./global.css";
 import styles from "./main.module.css";
 
 const FEATURED_IDS = [
+  // Discouraged examples
+  "table-discouraged",
   // Web Platform
   "customizable-select",
   // JavaScript

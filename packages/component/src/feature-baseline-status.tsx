@@ -31,7 +31,12 @@ export function FeatureBaselineStatus({ featureId }: { featureId: FeatureId }) {
 function FeatureDetails({ featureId }: { featureId: FeatureId }) {
   const feature = use(fetchFeature(featureId));
 
-  const { status, name, browsers, lowDate, description, canIUseId } = feature;
+  const { status, name, browsers, lowDate, description, canIUseId, discouraged } = feature;
+  const discouragedSourceLink = discouraged?.according_to?.[0]?.link;
+  const discouragedAlternativeIds = (discouraged?.alternatives ?? []).map(({ id }) => id);
+  const discouragedAlternativesText =
+    discouragedAlternativeIds.length > 0 ? discouragedAlternativeIds.join(", ") : "";
+  const discouragedTitleText = `${name} is discouraged ${discouragedSourceLink ? `according to ${discouragedSourceLink}.` : ""} ${discouragedAlternativesText ? `Please use these alternatives: ${discouragedAlternativesText}` : ""}`;
 
   const AvailabilityIcon = AVAILABILITY_ICONS[status];
   const isNewlyAvailableWithDate = status === "newly" && lowDate;
@@ -42,7 +47,10 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
       <summary className={styles.baselineSummary}>
         <h3 className={styles.baselineName}>{name}</h3>
         <div className={styles.baselineHeader}>
-          <span className={styles.baselineTitle}>
+          <span
+            className={styles.baselineTitle}
+            title={status === "discouraged" ? discouragedTitleText : undefined}
+          >
             <AvailabilityIcon />
             <span className={styles.baselineStatusLabel}>{STATUS_LABELS[status]}</span>
             {isNewlyAvailableWithDate ? (
@@ -80,6 +88,14 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
             target="_blank"
           >
             <img width={24} height={24} src={canIUsePng} alt="Can I Use" />
+          </a>
+          <a
+            href={`https://www.google.com/search?q=site%3Ahttps%3A%2F%2Fmodern-css.com%2F+${encodeURIComponent(name)}`}
+            title="Search on Modern.css for snippets and examples"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img width={24} height={24} src="https://modern-css.com/favicon.svg" alt="Modern.css" />
           </a>
         </div>
       </div>

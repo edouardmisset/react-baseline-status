@@ -13,12 +13,26 @@ type BrowserImplementationDetails = {
   status: BrowserStatus;
 };
 
+type FeatureDiscouragedAccordingTo = {
+  link: string;
+};
+
+type FeatureDiscouragedAlternative = {
+  id: string;
+};
+
+export type FeatureDiscouragedInfo = {
+  according_to: FeatureDiscouragedAccordingTo[];
+  alternatives: FeatureDiscouragedAlternative[];
+};
+
 export interface FeatureData {
   id: FeatureId;
   status: BaselineStatus;
   lowDate?: string;
   name: string;
   browsers: Record<BrowserName, BrowserImplementationDetails>;
+  discouraged?: FeatureDiscouragedInfo;
   description?: string;
   canIUseId?: string;
 }
@@ -55,10 +69,11 @@ async function loadFeature(id: FeatureId): Promise<FeatureData> {
 
     return {
       id,
-      status,
+      status: featureJson?.discouraged ? "discouraged" : status,
       lowDate: low_date,
       name: featureJson.name ?? id,
       browsers: buildMajorBrowserImplementations(featureJson),
+      discouraged: featureJson.discouraged,
       description,
       canIUseId,
     };
