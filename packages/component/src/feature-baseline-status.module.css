@@ -6,8 +6,9 @@
 }
 
 .baselineSummary {
-  display: grid;
-  grid-template-columns: 17rem 1fr auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   gap: var(--size-4);
   align-items: center;
 
@@ -107,12 +108,6 @@
   border-radius: var(--size-2);
 }
 
-.baselineContent {
-  padding: var(--size-3) var(--size-4);
-  border-top: 1px solid var(--border-color);
-  border-radius: 0 0 var(--size-2) var(--size-2);
-}
-
 /* Baseline Status Variants */
 .baselineStatus[data-status="widely"] {
   --baseline-status-color: var(--bs-color-widely);
@@ -155,9 +150,15 @@
   --drop-shadow-color: var(--surface-1);
 
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   column-gap: var(--size-2);
   row-gap: var(--size-1);
+}
+
+.baselineContent {
+  padding: var(--size-3) var(--size-4);
+  border-top: 1px solid var(--border-color);
+  border-radius: 0 0 var(--size-2) var(--size-2);
 }
 
 .baselineDescription {

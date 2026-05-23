@@ -40,6 +40,7 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
   return (
     <details className={styles.baselineStatus} data-status={status} open>
       <summary className={styles.baselineSummary}>
+        <h3 className={styles.baselineName}>{name}</h3>
         <div className={styles.baselineHeader}>
           <span className={styles.baselineTitle}>
             <AvailabilityIcon />
@@ -49,7 +50,6 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
             ) : null}
           </span>
         </div>
-        <h3 className={styles.baselineName}>{name}</h3>
         <div className={styles.baselineBrowsers}>
           {BROWSER_NAMES.map((browser) => (
             <BrowserStatus
