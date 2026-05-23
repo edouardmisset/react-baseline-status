@@ -1,0 +1,27 @@
+/* Default custom properties for react-baseline-status.
+ * Consumers can override any of these on :root or a wrapper element. */
+:where(:root) {
+  /* Status colors */
+  --bs-color-widely: #1e8e3e;
+  --bs-color-widely-secondary: #a8dab5;
+  --bs-color-newly: #1671f1;
+  --bs-color-newly-secondary: #a9c1ea;
+  --bs-color-limited: #ea8600;
+  --bs-color-limited-secondary: #fdd663;
+  --bs-color-unavailable: #d93025;
+  --bs-color-unknown: #909090;
+
+  /* Spacing scale */
+  --size-1: 0.25rem;
+  --size-2: 0.5rem;
+  --size-3: 1rem;
+  --size-4: 1.5rem;
+  --size-5: 2rem;
+  --size-6: 2.5rem;
+  --size-7: 3rem;
+
+  /* Surface & text colors */
+  --text-1: light-dark(hsl(0deg 0% 14%), hsl(0deg 0% 94%));
+  --surface-1: light-dark(hsl(0deg 0% 94%), hsl(0deg 0% 14%));
+  --surface-2: light-dark(hsl(0deg 0% 90%), hsl(0deg 0% 20%));
+}

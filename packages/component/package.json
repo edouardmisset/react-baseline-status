@@ -1,0 +1,43 @@
+{
+  "name": "react-baseline-status",
+  "version": "0.0.1",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "scripts": {
+    "build": "vp build",
+    "generate-ids": "node scripts/generate-ids.ts",
+    "prebuild": "pnpm run generate-ids"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "typescript": "~5.9.3",
+    "vite": "npm:@voidzero-dev/vite-plus-core@latest",
+    "vite-plugin-dts": "^4.5.4"
+  },
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19"
+  }
+}

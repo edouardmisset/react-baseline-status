@@ -1,4 +1,5 @@
 import { Suspense, use } from "react";
+import canIUsePng from "./assets/can-i-use.png";
 import { fetchFeature, type BaselineStatus } from "./data";
 import styles from "./feature-baseline-status.module.css";
 import { FeatureStatusSkeleton } from "./feature-status-skeleton";
@@ -48,11 +49,7 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
             ) : null}
           </span>
         </div>
-        <h3 className={styles.baselineName}>
-          <strong>
-            <code>{name}</code>
-          </strong>
-        </h3>
+        <h3 className={styles.baselineName}>{name}</h3>
         <div className={styles.baselineBrowsers}>
           {BROWSER_NAMES.map((browser) => (
             <BrowserStatus
@@ -82,7 +79,7 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <img width={24} height={24} src="assets/can-i-use.png" alt="Can I Use" />
+            <img width={24} height={24} src={canIUsePng} alt="Can I Use" />
           </a>
         </div>
       </div>

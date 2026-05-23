@@ -6,8 +6,8 @@ export function MDNIcon() {
       width="20"
       height="20"
       viewBox="0 0 24 24"
-      fill="currentColor"
-      stroke="currentColor"
+      fill="var(--text-1, currentColor)"
+      stroke="var(--text-1, currentColor)"
       strokeWidth="1"
       className={styles.mdnSearchBtn}
       role="img"

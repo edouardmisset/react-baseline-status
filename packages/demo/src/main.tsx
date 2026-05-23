@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { FeatureBaselineStatus } from "./feature-baseline-status";
-import type { FeatureId } from "./feature-ids";
+import { FeatureBaselineStatus } from "react-baseline-status";
+import type { FeatureId } from "react-baseline-status";
 import "./global.css";
 import styles from "./main.module.css";
 
