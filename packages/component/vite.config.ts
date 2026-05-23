@@ -15,7 +15,7 @@ export default defineConfig({
     }),
   ],
   build: {
-    target: "esnext",
+    target: "es2023",
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
       formats: ["es", "cjs"],
