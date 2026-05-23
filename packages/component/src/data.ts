@@ -14,7 +14,7 @@ type BrowserImplementationDetails = {
 };
 
 export interface FeatureData {
-  id: FeatureId; // Allow string, but usually FeatureId
+  id: FeatureId;
   status: BaselineStatus;
   lowDate?: string;
   name: string;

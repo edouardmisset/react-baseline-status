@@ -25,19 +25,21 @@
 .baselineStatusSkeleton {
   --skeleton-highlight-1: var(--bs-color-newly);
   --skeleton-highlight-2: var(--bs-color-newly-secondary);
+  min-inline-size: 12ch;
 }
 
 .featureNameSkeleton {
   --skeleton-highlight-1: color-mix(in oklch, var(--text-1) 50%, var(--surface-1));
   --skeleton-highlight-2: color-mix(in oklch, var(--text-1) 20%, var(--surface-1));
   --skeleton-speed: 2s;
+  min-inline-size: 14ch;
 }
 
 .browsersSkeleton {
   --skeleton-highlight-1: var(--bs-color-widely);
   --skeleton-highlight-2: var(--bs-color-limited-secondary);
   --skeleton-speed: 4s;
-  min-inline-size: 14rem;
+  min-inline-size: 16ch;
 }
 
 @keyframes skeletonSweep {
