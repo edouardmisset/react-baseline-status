@@ -18,7 +18,7 @@ export default defineConfig({
     target: "es2023",
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
-      formats: ["es", "cjs"],
+      formats: ["es"],
       fileName: "index",
     },
     rollupOptions: {

@@ -1,5 +1,6 @@
 import { Suspense, use } from "react";
 import canIUsePng from "./assets/can-i-use.png";
+import modernCssSvg from "./assets/modern-css.svg";
 import { fetchFeature } from "./data";
 import styles from "./feature-baseline-status.module.css";
 import { FeatureStatusSkeleton } from "./feature-status-skeleton";
@@ -98,7 +99,7 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <img width={24} height={24} src="https://modern-css.com/favicon.svg" alt="Modern.css" />
+            <img width={24} height={24} src={modernCssSvg} alt="Modern.css" />
           </a>
         </div>
       </div>
