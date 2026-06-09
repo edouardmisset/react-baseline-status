@@ -2,8 +2,8 @@ import chromeIconAsset from "../assets/chrome.svg";
 import edgeIconAsset from "../assets/edge.svg";
 import firefoxIconAsset from "../assets/firefox.svg";
 import safariIconAsset from "../assets/safari.svg";
-import type { BrowserName } from "../feature-baseline-status";
-import { formatMonthAndYear } from "../utils/date";
+import type { BrowserName } from "../utils/browser";
+import { buildBrowserTitle, type BrowserStatusTitleParams } from "../utils/browser-title";
 import styles from "./browser-icons.module.css";
 import type { SVGAttributes } from "react";
 
@@ -14,21 +14,7 @@ const BROWSER_NAME_TO_IMAGE_SRC = {
   Safari: safariIconAsset,
 } as const satisfies Record<BrowserName, string>;
 
-type BrowserStatusProps = {
-  name: BrowserName;
-  featureName: string;
-  available: boolean;
-  date: string;
-  version: string;
-};
-
-function buildBrowserTitle({ name, featureName, available, date, version }: BrowserStatusProps) {
-  return available
-    ? `${name} implemented ${featureName} on ${formatMonthAndYear(date)} in version ${version || "an unknown version"}`
-    : `${name} hasn't implemented ${featureName} yet`;
-}
-
-export const BrowserStatus = (props: BrowserStatusProps) => (
+export const BrowserStatus = (props: BrowserStatusTitleParams) => (
   <span
     className={styles.browser}
     data-available={props.available}
