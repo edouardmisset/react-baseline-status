@@ -57,20 +57,9 @@
   --pattern-color: oklch(from var(--text-1) l c h / 0.7);
 
   font-family:
-    "Monaspace Neon",
-    "FiraCode Nerd Font",
-    "FiraCode Nerd Font Mono",
-    "Atkinson Hyperlegible Mono",
-    "MesloLGS NF",
-    "Monaspace Krypton",
-    inconsolata,
-    fira mono,
-    ui-monospace,
-    droid sans mono,
-    source code pro,
-    cascadia code,
-    dejavu sans mono,
-    monospace;
+    "Monaspace Neon", "FiraCode Nerd Font", "FiraCode Nerd Font Mono", "Atkinson Hyperlegible Mono",
+    "MesloLGS NF", "Monaspace Krypton", inconsolata, "fira mono", ui-monospace, "droid sans mono",
+    "source code pro", "cascadia code", "dejavu sans mono", monospace;
 
   display: grid;
   max-inline-size: max-content;

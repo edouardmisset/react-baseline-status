@@ -22,6 +22,7 @@
   --size-7: 3rem;
 
   /* Surface & text colors */
+  color-scheme: light dark;
   --text-1: light-dark(hsl(0deg 0% 14%), hsl(0deg 0% 94%));
   --surface-1: light-dark(hsl(0deg 0% 94%), hsl(0deg 0% 14%));
   --surface-2: light-dark(hsl(0deg 0% 90%), hsl(0deg 0% 20%));
