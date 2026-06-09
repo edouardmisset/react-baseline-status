@@ -7,6 +7,7 @@ export const STATUS_LABELS = {
   newly: "Newly available",
   limited: "Limited availability",
   unknown: "Unknown",
+  discouraged: "Discouraged",
 } as const satisfies Record<BaselineStatus, string>;
 
 const SUPPORTED_BROWSERS_LIST_FORMATTER = new Intl.ListFormat("en-US", {

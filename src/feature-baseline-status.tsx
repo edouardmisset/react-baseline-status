@@ -14,15 +14,6 @@ export { BROWSER_NAMES } from "./utils/browser";
 export type { BrowserName } from "./utils/browser";
 export { STATUS_LABELS } from "./utils/status-tooltip";
 
-export const STATUS_LABELS = {
-  widely: "Widely available",
-  newly: "Newly available",
-  limited: "Limited availability",
-  unknown: "Unknown",
-  discouraged: "Discouraged",
-} as const satisfies Record<BaselineStatus, string>;
-export const BROWSER_NAMES = ["Chrome", "Edge", "Firefox", "Safari"] as const;
-export type BrowserName = (typeof BROWSER_NAMES)[number];
 const CAN_I_USE_BASE_URL = `https://caniuse.com/`;
 
 export function FeatureBaselineStatus({ featureId }: { featureId: FeatureId }) {

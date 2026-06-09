@@ -8,9 +8,6 @@ import {
 const BASELINE_STATUS = ["widely", "newly", "limited", "unknown", "discouraged"] as const;
 export type BaselineStatus = (typeof BASELINE_STATUS)[number];
 
-const BROWSER_STATUS = ["available"] as const;
-type BrowserStatus = (typeof BROWSER_STATUS)[number] | undefined;
-
 export interface FeatureData {
   id: FeatureId; // Allow string, but usually FeatureId
   status: BaselineStatus;
