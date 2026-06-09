@@ -36,7 +36,6 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
   const discouragedTitleText = `${name} is discouraged ${discouragedSourceLink ? `according to ${discouragedSourceLink}.` : ""} ${discouragedAlternativesText ? `Please use these alternatives: ${discouragedAlternativesText}` : ""}`;
 
   const AvailabilityIcon = AVAILABILITY_ICONS[status];
-  const isNewlyAvailableWithDate = status === "newly" && lowDate;
   const statusTooltip = buildStatusTooltip({ status, name, lowDate, browsers });
   const statusTitle = status === "discouraged" ? discouragedTitleText : statusTooltip;
   const caniuseUrl = canIUseId
@@ -53,9 +52,6 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
             <span className={styles.baselineStatusLabel} title={statusTitle}>
               {STATUS_LABELS[status]}
             </span>
-            {isNewlyAvailableWithDate ? (
-              <span className={styles.baselineBadge}>{new Date(lowDate).getFullYear()}</span>
-            ) : null}
           </span>
         </div>
         <div className={styles.baselineBrowsers}>

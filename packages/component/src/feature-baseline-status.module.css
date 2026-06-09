@@ -95,21 +95,6 @@
   white-space: pre;
 }
 
-.baselineBadge {
-  padding-block: var(--size-1);
-  padding-inline: var(--size-3);
-  font-size: 0.85em;
-
-  letter-spacing: -0.02em;
-  font-weight: 600;
-  text-transform: uppercase;
-
-  background-color: var(--baseline-status-color);
-  color: var(--text-1);
-  border: 1px solid var(--baseline-status-color-secondary);
-  border-radius: var(--size-2);
-}
-
 /* Baseline Status Variants */
 .baselineStatus[data-status="widely"] {
   --baseline-status-color: var(--bs-color-widely);
