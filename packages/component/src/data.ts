@@ -1,17 +1,12 @@
-import type { BrowserName } from "./feature-baseline-status";
 import type { FeatureId } from "./feature-ids";
+import type { BrowserName } from "./utils/browser";
+import {
+  buildMajorBrowserImplementations,
+  type BrowserImplementationDetails,
+} from "./utils/browser-implementations";
 
 const BASELINE_STATUS = ["widely", "newly", "limited", "unknown", "discouraged"] as const;
 export type BaselineStatus = (typeof BASELINE_STATUS)[number];
-
-const BROWSER_STATUS = ["available"] as const;
-type BrowserStatus = (typeof BROWSER_STATUS)[number] | undefined;
-
-type BrowserImplementationDetails = {
-  date: string;
-  version: string;
-  status: BrowserStatus;
-};
 
 type FeatureDiscouragedAccordingTo = {
   link: string;
@@ -25,7 +20,6 @@ export type FeatureDiscouragedInfo = {
   according_to: FeatureDiscouragedAccordingTo[];
   alternatives: FeatureDiscouragedAlternative[];
 };
-
 export interface FeatureData {
   id: FeatureId;
   status: BaselineStatus;
@@ -87,21 +81,3 @@ async function loadFeature(id: FeatureId): Promise<FeatureData> {
     };
   }
 }
-
-const buildMajorBrowserImplementations = (
-  json: any = {},
-): Record<BrowserName, BrowserImplementationDetails> => {
-  const buildBrowserImplementationDetails = (browser: string): BrowserImplementationDetails =>
-    (json.browser_implementations ?? {})[browser] ?? {
-      date: "",
-      version: "",
-      status: undefined,
-    };
-
-  return {
-    Chrome: buildBrowserImplementationDetails("chrome"),
-    Edge: buildBrowserImplementationDetails("edge"),
-    Firefox: buildBrowserImplementationDetails("firefox"),
-    Safari: buildBrowserImplementationDetails("safari"),
-  };
-};

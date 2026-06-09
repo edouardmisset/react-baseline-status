@@ -2,7 +2,8 @@ import chromeIconAsset from "../assets/chrome.svg";
 import edgeIconAsset from "../assets/edge.svg";
 import firefoxIconAsset from "../assets/firefox.svg";
 import safariIconAsset from "../assets/safari.svg";
-import type { BrowserName } from "../feature-baseline-status";
+import type { BrowserName } from "../utils/browser";
+import { buildBrowserTitle, type BrowserStatusTitleParams } from "../utils/browser-title";
 import styles from "./browser-icons.module.css";
 import type { SVGAttributes } from "react";
 
@@ -13,19 +14,18 @@ const BROWSER_NAME_TO_IMAGE_SRC = {
   Safari: safariIconAsset,
 } as const satisfies Record<BrowserName, string>;
 
-type BrowserStatusProps = {
-  name: BrowserName;
-  available: boolean;
-};
-
-export const BrowserStatus = ({ name, available }: BrowserStatusProps) => (
-  <span className={styles.browser} data-available={available}>
+export const BrowserStatus = (props: BrowserStatusTitleParams) => (
+  <span
+    className={styles.browser}
+    data-available={props.available}
+    title={buildBrowserTitle(props)}
+  >
     <img
-      src={BROWSER_NAME_TO_IMAGE_SRC[name]}
+      src={BROWSER_NAME_TO_IMAGE_SRC[props.name]}
       className={styles.browserIcon}
-      alt={`${name} ${available ? "Available" : "Unavailable"}`}
+      alt={`${props.name} ${props.available ? "Available" : "Unavailable"}`}
     />
-    {available ? <CheckIcon /> : <CrossIcon />}
+    {props.available ? <CheckIcon /> : <CrossIcon />}
   </span>
 );
 

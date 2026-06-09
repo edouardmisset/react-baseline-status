@@ -1,6 +1,6 @@
 import { Suspense, use } from "react";
 import canIUsePng from "./assets/can-i-use.png";
-import { fetchFeature, type BaselineStatus } from "./data";
+import { fetchFeature } from "./data";
 import styles from "./feature-baseline-status.module.css";
 import { FeatureStatusSkeleton } from "./feature-status-skeleton";
 
@@ -8,17 +8,14 @@ import type { FeatureId } from "./feature-ids";
 import { BrowserStatus } from "./icons/browser-icons";
 import { AVAILABILITY_ICONS } from "./icons/baseline-icons";
 import { MDNIcon } from "./icons/mdn";
+import { BROWSER_NAMES } from "./utils/browser";
+import { STATUS_LABELS, buildStatusTooltip } from "./utils/status-tooltip";
 
-export const STATUS_LABELS = {
-  widely: "Widely available",
-  newly: "Newly available",
-  limited: "Limited availability",
-  unknown: "Unknown",
-  discouraged: "Discouraged",
-} as const satisfies Record<BaselineStatus, string>;
-export const BROWSER_NAMES = ["Chrome", "Edge", "Firefox", "Safari"] as const;
-export type BrowserName = (typeof BROWSER_NAMES)[number];
-const CAN_I_USE_BASE_URL = "https://caniuse.com/";
+export { BROWSER_NAMES } from "./utils/browser";
+export type { BrowserName } from "./utils/browser";
+export { STATUS_LABELS } from "./utils/status-tooltip";
+
+const CAN_I_USE_BASE_URL = `https://caniuse.com/`;
 
 export function FeatureBaselineStatus({ featureId }: { featureId: FeatureId }) {
   return (
@@ -40,32 +37,42 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
 
   const AvailabilityIcon = AVAILABILITY_ICONS[status];
   const isNewlyAvailableWithDate = status === "newly" && lowDate;
-  const caniuseUrl = `${CAN_I_USE_BASE_URL}${canIUseId ? encodeURIComponent(canIUseId) : `?search=${encodeURIComponent(name)}`}`;
+  const statusTooltip = buildStatusTooltip({ status, name, lowDate, browsers });
+  const statusTitle = status === "discouraged" ? discouragedTitleText : statusTooltip;
+  const caniuseUrl = canIUseId
+    ? `${CAN_I_USE_BASE_URL}${encodeURIComponent(canIUseId)}`
+    : `${CAN_I_USE_BASE_URL}?search=${encodeURIComponent(name)}`;
 
   return (
     <details className={styles.baselineStatus} data-status={status} open>
       <summary className={styles.baselineSummary}>
         <h3 className={styles.baselineName}>{name}</h3>
         <div className={styles.baselineHeader}>
-          <span
-            className={styles.baselineTitle}
-            title={status === "discouraged" ? discouragedTitleText : undefined}
-          >
+          <span className={styles.baselineTitle}>
             <AvailabilityIcon />
-            <span className={styles.baselineStatusLabel}>{STATUS_LABELS[status]}</span>
+            <span className={styles.baselineStatusLabel} title={statusTitle}>
+              {STATUS_LABELS[status]}
+            </span>
             {isNewlyAvailableWithDate ? (
               <span className={styles.baselineBadge}>{new Date(lowDate).getFullYear()}</span>
             ) : null}
           </span>
         </div>
         <div className={styles.baselineBrowsers}>
-          {BROWSER_NAMES.map((browser) => (
-            <BrowserStatus
-              key={browser}
-              name={browser}
-              available={browsers[browser].status === "available"}
-            />
-          ))}
+          {BROWSER_NAMES.map((browser) => {
+            const implementation = browsers[browser];
+
+            return (
+              <BrowserStatus
+                key={browser}
+                name={browser}
+                featureName={name}
+                available={implementation.status === "available"}
+                date={implementation.date}
+                version={implementation.version}
+              />
+            );
+          })}
         </div>
       </summary>
 
