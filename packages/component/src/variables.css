@@ -9,6 +9,7 @@
   --bs-color-limited: #ea8600;
   --bs-color-limited-secondary: #fdd663;
   --bs-color-discouraged: hsl(4, 71%, 50%);
+  --bs-color-discouraged-secondary: hsl(4, 71%, 65%);
   --bs-color-unknown: #909090;
 
   /* Spacing scale */
