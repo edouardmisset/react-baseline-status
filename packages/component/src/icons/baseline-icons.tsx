@@ -3,7 +3,7 @@ import type { FC, SVGAttributes } from "react";
 
 const iconStyle = { width: "var(--size-5)", height: "auto" } as const;
 
-export const WidelyIcon = (props: SVGAttributes<SVGElement>) => (
+const WidelyIcon = (props: SVGAttributes<SVGElement>) => (
   <svg style={iconStyle} {...props} viewBox="0 0 500 284" fill="none">
     <path fill="var(--bs-color-widely)" d="m0 142 34-34 108 108L358 0l34 34-250 250L0 142Z" />
     <path
@@ -13,7 +13,7 @@ export const WidelyIcon = (props: SVGAttributes<SVGElement>) => (
   </svg>
 );
 
-export const NewlyIcon = (props: SVGAttributes<SVGElement>) => (
+const NewlyIcon = (props: SVGAttributes<SVGElement>) => (
   <svg style={iconStyle} {...props} fill="none" viewBox="0 59.17 284 156.07">
     <path
       fill="var(--bs-color-newly-secondary)"
@@ -26,7 +26,7 @@ export const NewlyIcon = (props: SVGAttributes<SVGElement>) => (
   </svg>
 );
 
-export const LimitedIcon = (props: SVGAttributes<SVGElement>) => (
+const LimitedIcon = (props: SVGAttributes<SVGElement>) => (
   <svg style={iconStyle} {...props} viewBox="0 0 500 284" fill="none">
     <path
       fill="var(--bs-color-limited)"
@@ -39,19 +39,16 @@ export const LimitedIcon = (props: SVGAttributes<SVGElement>) => (
   </svg>
 );
 
-export const NoDataIcon = (props: SVGAttributes<SVGElement>) => (
+const NoDataIcon = (props: SVGAttributes<SVGElement>) => (
   <svg style={iconStyle} {...props} viewBox="0 0 36 20">
-    <path fill="var(--baseline-icon-no_data)" d="M18 8L20 10L18 12L16 10L18 8Z" />
-    <path
-      fill="var(--baseline-icon-no_data)"
-      d="M28 2L26 4L32 10L26 16L22 12L20 14L26 20L36 10L28 2Z"
-    />
-    <path fill="var(--baseline-icon-no_data)" d="M10 0L2 8L4 10L10 4L14 8L16 6L10 0Z" />
-    <path fill="var(--baseline-icon-no_data)" d="M26 0L28 2L10 20L0 10L2 8L10 16L26 0Z" />
+    <path fill="var(--bs-color-unknown)" d="M18 8L20 10L18 12L16 10L18 8Z" />
+    <path fill="var(--bs-color-unknown)" d="M28 2L26 4L32 10L26 16L22 12L20 14L26 20L36 10L28 2Z" />
+    <path fill="var(--bs-color-unknown)" d="M10 0L2 8L4 10L10 4L14 8L16 6L10 0Z" />
+    <path fill="var(--bs-color-unknown)" d="M26 0L28 2L10 20L0 10L2 8L10 16L26 0Z" />
   </svg>
 );
 
-export const DiscouragedIcon = (props: SVGAttributes<SVGElement>) => (
+const DiscouragedIcon = (props: SVGAttributes<SVGElement>) => (
   <svg style={iconStyle} {...props} viewBox="0 0 36 20" fill="none">
     <path d="M10 0L12 2L10 4L8 2L10 0Z" fill="var(--bs-color-discouraged)" />
     <path d="M26 0L28 2L26 4L24 2L26 0Z" fill="var(--bs-color-discouraged)" />

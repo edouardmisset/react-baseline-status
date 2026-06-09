@@ -24,6 +24,6 @@ export default defineConfig({
     rollupOptions: {
       external: ["react", "react-dom", "react/jsx-runtime"],
     },
-    assetsInlineLimit: 100_000,
+    assetsInlineLimit: 8_192,
   },
 });

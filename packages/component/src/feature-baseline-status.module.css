@@ -38,7 +38,7 @@
   display: flex;
   align-items: center;
   gap: var(--size-3);
-  color: color-mix(var(--text-1) 50%, var(--baseline-status-color));
+  color: color-mix(in oklch, var(--text-1) 50%, var(--baseline-status-color));
 }
 
 .baselineStatusLabel {

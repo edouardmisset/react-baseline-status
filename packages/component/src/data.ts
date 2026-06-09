@@ -51,8 +51,15 @@ async function loadFeature(id: FeatureId): Promise<FeatureData> {
     ]);
 
     if (featureMetadata.status !== "fulfilled")
-      throw new Error(`API Error ${featureMetadata.status}`);
-    if (feature.status !== "fulfilled") throw new Error(`API Error ${feature.status}`);
+      throw new Error(`Failed to fetch feature metadata: ${featureMetadata.reason}`);
+    if (feature.status !== "fulfilled")
+      throw new Error(`Failed to fetch feature: ${feature.reason}`);
+    if (!feature.value.ok)
+      throw new Error(`API returned ${feature.value.status}: ${feature.value.statusText}`);
+    if (!featureMetadata.value.ok)
+      throw new Error(
+        `API returned ${featureMetadata.value.status}: ${featureMetadata.value.statusText}`,
+      );
 
     const featureJson = await feature.value.json();
     const metadataJson = await featureMetadata.value.json();
