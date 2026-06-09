@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-export const featureIds = [
+const featureIds = [
   "a",
   "abbr",
   "abortable-fetch",

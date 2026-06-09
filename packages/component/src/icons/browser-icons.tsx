@@ -45,7 +45,7 @@ function BrowserStatusIcon({ color, path, ...props }: BrowserStatusIconProps) {
   );
 }
 
-export function CheckIcon(props: SVGAttributes<SVGElement>) {
+function CheckIcon(props: SVGAttributes<SVGElement>) {
   return (
     <BrowserStatusIcon
       {...props}
@@ -55,7 +55,7 @@ export function CheckIcon(props: SVGAttributes<SVGElement>) {
   );
 }
 
-export function CrossIcon(props: SVGAttributes<SVGElement>) {
+function CrossIcon(props: SVGAttributes<SVGElement>) {
   return (
     <BrowserStatusIcon
       {...props}

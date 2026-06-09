@@ -9,11 +9,17 @@
     "check": "vp check --fix",
     "lint": "vp lint --fix",
     "format": "vp fmt --write",
+    "fallow": "fallow fix",
+    "fallow:dead-code": "fallow dead-code",
+    "fallow:dupes": "fallow dupes",
+    "fallow:health": "fallow health",
+    "fallow:audit": "fallow audit --base main",
     "preview": "pnpm -F react-baseline-status-demo preview",
     "prepare": "vp config"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
+    "fallow": "^2.89.0",
     "typescript": "~5.9.3",
     "vite": "npm:@voidzero-dev/vite-plus-core@latest",
     "vite-plus": "latest"
