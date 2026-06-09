@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-export const featureIds = [
+const featureIds = [
   "a",
   "abbr",
   "abortable-fetch",
@@ -17,6 +17,7 @@ export const featureIds = [
   "accesskey",
   "accessor-methods",
   "active-view-transition",
+  "ad-selection",
   "address",
   "alerts",
   "align-content-block",
@@ -179,6 +180,7 @@ export const featureIds = [
   "color-function",
   "color-gamut",
   "color-mix",
+  "color-mix-variadic",
   "color-scheme",
   "colrv0",
   "colrv1",
@@ -286,6 +288,7 @@ export const featureIds = [
   "div",
   "document-caretpositionfrompoint",
   "document-colors",
+  "document-modelcontext",
   "document-picture-in-picture",
   "document-write",
   "dom",
@@ -623,6 +626,7 @@ export const featureIds = [
   "messageerror",
   "meta",
   "meta-application-title",
+  "meta-refresh",
   "meta-text-scale",
   "meta-theme-color",
   "meter",
@@ -768,6 +772,7 @@ export const featureIds = [
   "promise-finally",
   "promise-try",
   "promise-withresolvers",
+  "protected-audience",
   "proto",
   "proxy-reflect",
   "push",
@@ -802,6 +807,7 @@ export const featureIds = [
   "reporting",
   "reporting-coep-violations",
   "reporting-crashes",
+  "reporting-crashes-storage",
   "reporting-csp-violations",
   "reporting-deprecation",
   "reporting-integrity-violations",
@@ -979,6 +985,7 @@ export const featureIds = [
   "text-decoration-spelling-grammar",
   "text-emphasis",
   "text-encoding",
+  "text-fit",
   "text-indent",
   "text-indent-each-line",
   "text-indent-hanging",

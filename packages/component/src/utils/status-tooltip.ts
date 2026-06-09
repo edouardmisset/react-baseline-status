@@ -28,7 +28,7 @@ type BuildStatusTooltipParams = {
   browsers: Record<BrowserName, { status: "available" | undefined }>;
 };
 
-export function getElapsedMonthCount(date: string) {
+function getElapsedMonthCount(date: string) {
   const parsedDate = new Date(date);
 
   if (Number.isNaN(parsedDate.getTime())) return null;

@@ -8,12 +8,25 @@ import {
 const BASELINE_STATUS = ["widely", "newly", "limited", "unknown", "discouraged"] as const;
 export type BaselineStatus = (typeof BASELINE_STATUS)[number];
 
+type FeatureDiscouragedAccordingTo = {
+  link: string;
+};
+
+type FeatureDiscouragedAlternative = {
+  id: string;
+};
+
+export type FeatureDiscouragedInfo = {
+  according_to: FeatureDiscouragedAccordingTo[];
+  alternatives: FeatureDiscouragedAlternative[];
+};
 export interface FeatureData {
-  id: FeatureId; // Allow string, but usually FeatureId
+  id: FeatureId;
   status: BaselineStatus;
   lowDate?: string;
   name: string;
   browsers: Record<BrowserName, BrowserImplementationDetails>;
+  discouraged?: FeatureDiscouragedInfo;
   description?: string;
   canIUseId?: string;
 }
@@ -38,8 +51,15 @@ async function loadFeature(id: FeatureId): Promise<FeatureData> {
     ]);
 
     if (featureMetadata.status !== "fulfilled")
-      throw new Error(`API Error ${featureMetadata.status}`);
-    if (feature.status !== "fulfilled") throw new Error(`API Error ${feature.status}`);
+      throw new Error(`Failed to fetch feature metadata: ${featureMetadata.reason}`);
+    if (feature.status !== "fulfilled")
+      throw new Error(`Failed to fetch feature: ${feature.reason}`);
+    if (!feature.value.ok)
+      throw new Error(`API returned ${feature.value.status}: ${feature.value.statusText}`);
+    if (!featureMetadata.value.ok)
+      throw new Error(
+        `API returned ${featureMetadata.value.status}: ${featureMetadata.value.statusText}`,
+      );
 
     const featureJson = await feature.value.json();
     const metadataJson = await featureMetadata.value.json();
@@ -50,10 +70,11 @@ async function loadFeature(id: FeatureId): Promise<FeatureData> {
 
     return {
       id,
-      status,
+      status: featureJson?.discouraged ? "discouraged" : status,
       lowDate: low_date,
       name: featureJson.name ?? id,
       browsers: buildMajorBrowserImplementations(featureJson),
+      discouraged: featureJson.discouraged,
       description,
       canIUseId,
     };

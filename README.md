@@ -45,3 +45,13 @@ pnpm dlx jsr add @baseline/status
 1. `pnpm install`
 2. `pnpm run generate-ids` (Updates the feature ID list from web-features)
 3. `pnpm build`
+
+## Fallow
+
+Fallow is configured at the monorepo root (`.fallowrc.json`).
+
+- `pnpm fallow`: run the full analysis suite
+- `pnpm fallow:dead-code`: detect unused files, exports, types, and deps
+- `pnpm fallow:dupes`: detect duplicated logic
+- `pnpm fallow:health`: detect complexity hotspots
+- `pnpm fallow:audit`: gate changes against the `main` base branch

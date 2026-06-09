@@ -1,4 +1,6 @@
 import { Suspense, use } from "react";
+import canIUsePng from "./assets/can-i-use.png";
+import modernCssSvg from "./assets/modern-css.svg";
 import { fetchFeature } from "./data";
 import styles from "./feature-baseline-status.module.css";
 import { FeatureStatusSkeleton } from "./feature-status-skeleton";
@@ -27,10 +29,16 @@ export function FeatureBaselineStatus({ featureId }: { featureId: FeatureId }) {
 function FeatureDetails({ featureId }: { featureId: FeatureId }) {
   const feature = use(fetchFeature(featureId));
 
-  const { status, name, browsers, lowDate, description, canIUseId } = feature;
+  const { status, name, browsers, lowDate, description, canIUseId, discouraged } = feature;
+  const discouragedSourceLink = discouraged?.according_to?.[0]?.link;
+  const discouragedAlternativeIds = (discouraged?.alternatives ?? []).map(({ id }) => id);
+  const discouragedAlternativesText =
+    discouragedAlternativeIds.length > 0 ? discouragedAlternativeIds.join(", ") : "";
+  const discouragedTitleText = `${name} is discouraged ${discouragedSourceLink ? `according to ${discouragedSourceLink}.` : ""} ${discouragedAlternativesText ? `Please use these alternatives: ${discouragedAlternativesText}` : ""}`;
 
   const AvailabilityIcon = AVAILABILITY_ICONS[status];
   const statusTooltip = buildStatusTooltip({ status, name, lowDate, browsers });
+  const statusTitle = status === "discouraged" ? discouragedTitleText : statusTooltip;
   const caniuseUrl = canIUseId
     ? `${CAN_I_USE_BASE_URL}${encodeURIComponent(canIUseId)}`
     : `${CAN_I_USE_BASE_URL}?search=${encodeURIComponent(name)}`;
@@ -42,7 +50,7 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
         <div className={styles.baselineHeader}>
           <span className={styles.baselineTitle}>
             <AvailabilityIcon />
-            <span className={styles.baselineStatusLabel} title={statusTooltip}>
+            <span className={styles.baselineStatusLabel} title={statusTitle}>
               {STATUS_LABELS[status]}
             </span>
           </span>
@@ -83,7 +91,15 @@ function FeatureDetails({ featureId }: { featureId: FeatureId }) {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <img width={24} height={24} src="assets/can-i-use.png" alt="Can I Use" />
+            <img width={24} height={24} src={canIUsePng} alt="Can I Use" />
+          </a>
+          <a
+            href={`https://www.google.com/search?q=site%3Ahttps%3A%2F%2Fmodern-css.com%2F+${encodeURIComponent(name)}`}
+            title="Search on Modern.css for snippets and examples"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img width={24} height={24} src={modernCssSvg} alt="Modern.css" />
           </a>
         </div>
       </div>

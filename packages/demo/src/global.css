@@ -1,0 +1,31 @@
+@layer reset, base;
+
+@layer reset {
+  :where(body) {
+    margin: 0;
+    padding: 0;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+}
+
+@layer base {
+  :where(#root) {
+    isolation: isolate;
+  }
+
+  :where(h1) {
+    padding: 0;
+    margin-block-start: 0;
+    margin-block-end: 0.5em;
+  }
+
+  ::selection {
+    background-color: var(--text-1);
+    color: var(--surface-1);
+  }
+}

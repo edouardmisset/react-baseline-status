@@ -17,6 +17,6 @@ export function buildBrowserTitle({
   version,
 }: BrowserStatusTitleParams) {
   return available
-    ? `${name} implemented ${featureName} on ${formatMonthAndYear(date)} in version ${version || "an unknown version"}`
+    ? `${name} implemented ${featureName} in ${formatMonthAndYear(date)} in version ${version || "an unknown version"}`
     : `${name} hasn't implemented ${featureName} yet`;
 }

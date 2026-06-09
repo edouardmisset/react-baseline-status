@@ -1,35 +1,25 @@
 {
-  "name": "react-baseline-status",
+  "name": "react-baseline-status-monorepo",
   "version": "0.0.0",
   "private": true,
-  "files": [
-    "dist",
-    "README.md"
-  ],
   "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "scripts": {
-    "dev": "vp dev",
-    "build": "vp build",
+    "dev": "pnpm -F react-baseline-status-demo dev",
+    "build": "pnpm -F react-baseline-status build && pnpm -F react-baseline-status-demo build",
     "check": "vp check --fix",
     "lint": "vp lint --fix",
     "format": "vp fmt --write",
-    "preview": "vp preview",
-    "generate-ids": "node scripts/generate-ids.ts",
-    "prebuild": "pnpm run generate-ids",
+    "fallow": "fallow fix",
+    "fallow:dead-code": "fallow dead-code",
+    "fallow:dupes": "fallow dupes",
+    "fallow:health": "fallow health",
+    "fallow:audit": "fallow audit --base main",
+    "preview": "pnpm -F react-baseline-status-demo preview",
     "prepare": "vp config"
-  },
-  "dependencies": {
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
-    "@types/react": "^19.2.5",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.1.1",
+    "fallow": "^2.89.0",
     "typescript": "~5.9.3",
     "vite": "npm:@voidzero-dev/vite-plus-core@latest",
     "vite-plus": "latest"
